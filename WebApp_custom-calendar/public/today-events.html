@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .event {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid blue;
+        }
+    </style>
+    <script>
+        window.addEventListener('message', (event) => {
+            // Optionally check the origin for security purposes
+            // if (event.origin !== "http://your-react-app-origin.com") return;
+
+            // Handle different types of messages
+            if (event.data.type === 'UPDATE_EVENTS') {
+                updateEvents(event.data.content);
+            } else if (event.data.type === 'DATE_CLICKED') {
+                handleDateClick(event.data.date);
+            }
+        });
+
+        function updateEvents(events) {
+            const eventsContainer = document.body;
+            eventsContainer.innerHTML = ''; // Clear existing events
+            events.forEach(event => {
+                const eventDiv = document.createElement('div');
+                eventDiv.className = 'event';
+                eventDiv.innerHTML = `
+                    <h2>${event.title}</h2>
+                    <p>${event.details}</p>
+                `;
+                eventsContainer.appendChild(eventDiv);
+            });
+        }
+        function handleDateClick(dateString) {
+            const date = new Date(dateString);
+            const formattedDate = date.toLocaleDateString("en-US", {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                weekday: 'short'
+            });
+
+            const eventsContainer = document.body;
+            eventsContainer.innerHTML = ''; // Clear existing content
+            const dateDiv = document.createElement('div');
+            dateDiv.className = 'event';
+            dateDiv.innerHTML = `<h2>${formattedDate}</h2><p>${dateString}</p>`;
+            eventsContainer.appendChild(dateDiv);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Events will be dynamically inserted here -->
+</body>
+
+</html>
