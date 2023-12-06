@@ -18,6 +18,8 @@
             padding: 15px;
             margin-bottom: 10px;
             border-left: 5px solid blue;
+            cursor: pointer;
+            /* Add a pointer cursor to indicate clickable */
         }
     </style>
     <script>
@@ -36,16 +38,26 @@
         function updateEvents(events) {
             const eventsContainer = document.body;
             eventsContainer.innerHTML = ''; // Clear existing events
-            events.forEach(event => {
+            events.forEach(eventData => {
                 const eventDiv = document.createElement('div');
                 eventDiv.className = 'event';
                 eventDiv.innerHTML = `
-                    <h2>${event.title}</h2>
-                    <p>${event.details}</p>
-                `;
+            <h2>${eventData.title}</h2>
+            <p>${eventData.details}</p>
+        `;
                 eventsContainer.appendChild(eventDiv);
+
+                // Add click event listener to each eventDiv
+                eventDiv.addEventListener('click', function () {
+                    console.log('Event clicked:', eventData.title);
+                    window.parent.postMessage({
+                        type: 'EVENT_CLICKED',
+                        title: eventData.title
+                    }, "*"); // Replace "*" with the parent window's origin for security
+                });
             });
         }
+
         function handleDateClick(dateString) {
             const date = new Date(dateString);
             const formattedDate = date.toLocaleDateString("en-US", {
@@ -61,7 +73,19 @@
             dateDiv.className = 'event';
             dateDiv.innerHTML = `<h2>${formattedDate}</h2><p>${dateString}</p>`;
             eventsContainer.appendChild(dateDiv);
+
+            // Make the dateDiv clickable
+            dateDiv.addEventListener('click', function () {
+                console.log('Date clicked:', formattedDate);
+                // Perform your desired action here
+                // For example, send a message back to the parent
+                window.parent.postMessage({
+                    type: 'DATE_ELEMENT_CLICKED',
+                    date: formattedDate
+                }, "*"); // Replace "*" with the parent window's origin for security
+            });
         }
+
     </script>
 </head>
 

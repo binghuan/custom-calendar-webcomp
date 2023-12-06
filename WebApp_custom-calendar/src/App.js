@@ -1,10 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Container, Grid } from '@material-ui/core';
 import CalendarView from './Components/CalendarView';
 import TodayView from './Components/TodayView';
 
 function App() {
   const todayViewRef = useRef(null);
+
+  useEffect(() => {
+    const handleMessage = (event) => {
+      // Optionally, validate the message origin
+      // if (event.origin !== "https://expected-origin.com") return;
+
+      console.log('Message received from iframe:', event.data);
+      // Handle the message here
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
 
   const handleDateClick = (date) => {
     console.log('date clicked', date);
