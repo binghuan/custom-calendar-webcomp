@@ -79,11 +79,18 @@
                 console.log('Date clicked:', formattedDate);
                 // Perform your desired action here
                 // For example, send a message back to the parent
-                window.parent.postMessage({
+                let msg = {
                     type: 'DATE_ELEMENT_CLICKED',
                     date: formattedDate
-                }, "*"); // Replace "*" with the parent window's origin for security
+                };
+                window.parent.postMessage(msg, "*"); // Replace "*" with the parent window's origin for security
+
+                sendToSwiftUI(msg);
             });
+        }
+
+        function sendToSwiftUI(message) {
+            window.webkit.messageHandlers.callbackHandler.postMessage(message);
         }
 
     </script>
