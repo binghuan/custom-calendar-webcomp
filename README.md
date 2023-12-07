@@ -1,34 +1,43 @@
 custom-calendar-webcomp
 =======================
 
+This project is a demo of a custom calendar widget for iOS/Android/Mac/Linux. It is implemented using the WebView component, which loads a self-made H5 web page.
+
 - [custom-calendar-webcomp](#custom-calendar-webcomp)
-    - [Solution 1: Write your own calendar widget](#solution-1-write-your-own-calendar-widget)
-    - [Solution 2: Use a third-party calendar widget](#solution-2-use-a-third-party-calendar-widget)
-    - [Solution 3: Use WebView to load a self-made H5 web page](#solution-3-use-webview-to-load-a-self-made-h5-web-page)
+  - [Introduction](#introduction)
+    - [Solution 1: Write Your Own Calendar Widget](#solution-1-write-your-own-calendar-widget)
+    - [Solution 2: Use a Third-Party Calendar Widget](#solution-2-use-a-third-party-calendar-widget)
+    - [Solution 3: Use WebView to Load a Self-Made H5 Web Page](#solution-3-use-webview-to-load-a-self-made-h5-web-page)
   - [Demo](#demo)
 
-### Solution 1: Write your own calendar widget
-  - **Pros:** 
-    - Full control, allowing the implementation of any desired effect.
-  - **Cons:** 
-    - Requires building from scratch, which can be time-consuming.
+## Introduction
+If you want to implement a calendar widget in your application, you have the following solutions:
 
-### Solution 2: Use a third-party calendar widget
-  - **Pros:** 
-    - Quickly implement a calendar widget without needing to build it from scratch.
-  - **Cons:** 
-    - Some third-party calendar widgets do not support using the same codebase for iOS/Android/Mac/Linux, leading to inconsistent styles across platforms.
-    - Some third-party widgets do not support customization, like Google Calendar's effect. Subsequent modifications might require altering the widget's source code, which is inconvenient.
+### Solution 1: Write Your Own Calendar Widget
+  - **Pros:**
+    - **Complete Creative Freedom:** Full control over the design and functionality, enabling the creation of unique and tailored user experiences.
+    - **Tailored Functionality:** Ability to implement specific features and integrations that perfectly align with project requirements.
+  - **Cons:**
+    - **Time and Resource Intensive:** Developing a widget from the ground up requires significant investment in terms of time, effort, and potentially, development resources.
+    - **Maintenance and Updates:** Responsibility for ongoing maintenance, bug fixes, and updates, which can be demanding over time.
 
-### Solution 3: Use WebView to load a self-made H5 web page
-  - **Pros:** 
-    - Can use the same set of H5 code for iOS/Android/Mac/Linux.
-    - Enables cross-platform implementation, such as for iOS/Android/Mac/Linux.
-  - **Cons:** 
-    - Requires implementing the interaction between the H5 web version and the native code yourself.
-    - Initially, there might be slow loading issues due to caching when loading through the web.
-  
+
+### Solution 2: Use a Third-Party Calendar Widget
+  - **Pros:**
+    - Speedy implementation with pre-built functionalities.
+  - **Cons:**
+    - Limited support for uniform codebase across different platforms, potentially leading to inconsistent user experiences.
+    - Restricted customization options; reliance on third-party code for modifications.
+
+### Solution 3: Use WebView to Load a Self-Made H5 Web Page
+  - **Pros:**
+    - Uniform H5 codebase for all platforms, ensuring a consistent experience.
+    - Facilitates a cross-platform solution.
+  - **Cons:**
+    - Requires manual implementation of interactions between H5 web content and native code.
+    - Potential initial slow loading due to web caching.
+
 ![](./README/solution3.png)
 
-## Demo 
+## Demo
 ![](./README/demo.png)
